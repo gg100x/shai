@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>shai</title>
+    <style>
+        body {
+            position: relative;
+            background-image: url('banner.jpeg');
+            background-repeat: repeat;
+            background-size: 80px 80px; /* Adjust this to the desired size */
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+        }
+        #dexscreener-embed {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: auto;
+            width: 100%;
+        }
+        #info {
+            display: none;
+        }
+        /* Styles for landscape orientation */
+        @media (orientation: landscape) {
+            #container {
+                flex-direction: row;
+            }
+            #dexscreener-embed {
+                width: 70%;
+            }
+            #info {
+                display: block;
+                width: 30%;
+                float: right;
+            }
+            .twitter-tweet {
+                order: 3;
+            }
+        }
+        .random-cat {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="dexscreener-embed">
+            <iframe src="https://dexscreener.com/solana/D8RVJCQBhKNhzBuVBZdmz7DFAWpiRYy5JPEHqEbbCdfg?embed=1&theme=dark"
+                style="width:100%; height:900px; border:0;">
+            </iframe>
+        </div>
+        <div id="info">
+            <!-- Information to be displayed on the right in landscape orientation goes here -->
+        </div>
+        <blockquote class="twitter-tweet">
+            <p lang="en" dir="ltr">This is an example tweet. <a href="https://t.co/abcdefg">link</a></p>
+            &mdash; Example User (@exampleuser) <a href="https://twitter.com/NateHallinan/status/1753193758697660438">Date</a>
+        </blockquote>
+    </div>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script>
+        function getRandomPosition() {
+            var y = window.innerWidth;
+            var x = window.innerHeight;
+            var randomX = Math.floor(Math.random()*x);
+            var randomY = Math.floor(Math.random()*y);
+            return [randomX,randomY];
+        }
+
+        for (var i = 0; i < 50; i++) {
+            var img = document.createElement('img');
+            img.setAttribute("src", "cat.gif");
+            img.className = 'random-cat';
+            var randomPosition = getRandomPosition();
+            img.style.top = randomPosition[0] + 'px';
+            img.style.left = randomPosition[1] + 'px';
+            document.body.appendChild(img);
+        }
+    </script>
+</body>
+</html>
